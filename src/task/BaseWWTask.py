@@ -163,7 +163,7 @@ class BaseWWTask(BaseTask):
             center_distance = echo.center()[0] - self.width_of_screen(0.5)
             threshold = 0.05 if not last_direction else 0.15
             if abs(center_distance) < self.height_of_screen(threshold):
-                if echo.y + echo.height > self.height_of_screen(0.55):
+                if echo.y + echo.height > self.height_of_screen(0.65):
                     next_direction = 's'
                 else:
                     next_direction = 'w'
