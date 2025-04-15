@@ -144,31 +144,11 @@ class BaseWWTask(BaseTask):
     def walk_to_yolo_echo(self, time_out=15):
         last_direction = None
         start = time.time()
-        # while time.time() - start < time_out:
-        #     self.next_frame()
-        #     echos = self.find_echos()
-        #     if not echos:
-        #         self.log_debug(f'walk_to_echo, no echos found, break')
-        #         break
-        #     echo = echos[0]
-        #     center_distance = echo.center()[0] - self.width_of_screen(0.5)
-        #     threshold = 0.05 if not last_direction else 0.15
-        #     if abs(center_distance) < self.height_of_screen(threshold):
-        #         next_direction = None
-        #     elif center_distance > 0:
-        #         next_direction = 'd'
-        #     else:
-        #         next_direction = 'a'
-        #     last_direction = self._walk_direction(last_direction, next_direction)
-        #     if not next_direction:
-        #         self.log_debug(f'echo_centered {center_distance}')
-        #         break
-        # last_direction = self._stop_last_direction(last_direction)
         no_echo_start = 0
         while time.time() - start < time_out:
             self.next_frame()
             if self.pick_echo():
-                break
+                return True
             echos = self.find_echos()
             if not echos:
                 if no_echo_start == 0:
